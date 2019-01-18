@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-5">Register</h2>
+
+    <form th:action="@{/register}" th:object="${registerDto}" method="post">
+        <div class="form-group">
+            <label>Username: </label>
+            <input class="form-control" type="text" th:field="*{username}" required minlength="3"/>
+        </div>
+
+        <div class="form-group">
+            <label>First Name: </label>
+            <input class="form-control" type="text" th:field="*{firstName}" required minlength="3"/>
+        </div>
+
+        <div class="form-group">
+            <label>Last Name: </label>
+            <input class="form-control" type="text" th:field="*{lastName}" required minlength="3"/>
+        </div>
+
+        <div class="form-group">
+            <label>Password: </label>
+            <input class="form-control" type="password" th:field="*{password}" required minlength="3"/>
+        </div>
+
+        <div class="row">
+            <button class="btn btn-primary col-2 mx-auto" type="submit">Create</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

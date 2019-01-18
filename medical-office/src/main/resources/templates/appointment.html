@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Appointment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Medical Office</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Back</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="mt-5">Appointment</h2>
+
+    <form th:action="@{/appointment}" th:object="${appointment}" method="post">
+        <div class="form-group">
+            <label>Choose a date</label>
+            <input class="form-control" type="datetime-local" th:field="*{time}" />
+        </div>
+
+        <div class="form-group">
+            <label>Choose a doctor</label>
+            <select class="form-control" th:field="*{doctorId}">
+                <option th:each="doctor: ${doctors}" th:value="${doctor.getId()}"
+                        th:text="${doctor.getLastName() + ' ' + doctor.getFirstName() + ', ' + doctor.getSpecialization()}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Details</label>
+            <textarea class="form-control" rows="3" th:field="*{details}"></textarea>
+        </div>
+
+        <div class="row">
+            <button class="btn btn-primary col-2 mx-auto" type="submit">Create</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
